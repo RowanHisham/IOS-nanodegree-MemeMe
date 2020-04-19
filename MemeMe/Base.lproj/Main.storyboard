@@ -25,14 +25,14 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Sgd-Bp-8cQ"/>
-                                    <barButtonItem systemItem="camera" id="7n7-tw-DlK">
+                                    <barButtonItem tag="1" systemItem="camera" id="7n7-tw-DlK">
                                         <connections>
-                                            <action selector="pickImageCamera:" destination="BYZ-38-t0r" id="YdV-u7-cKP"/>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="WMz-AY-aXw"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Album" id="FVt-Gj-kSF">
                                         <connections>
-                                            <action selector="pickImageLibrary:" destination="BYZ-38-t0r" id="BDl-tW-jLC"/>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="4DS-JH-veg"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TYG-k4-Hkh"/>
@@ -46,7 +46,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Top" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Top" placeholder="Top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyo-eJ-cIZ" userLabel="Top TextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Top" placeholder="Top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyo-eJ-cIZ" userLabel="Top TextField">
                                 <rect key="frame" x="20" y="85" width="335" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -70,7 +70,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="Bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" placeholder="Bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nX4-d8-6cm" userLabel="Bottom TextField">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" restorationIdentifier="Bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" placeholder="Bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nX4-d8-6cm" userLabel="Bottom TextField">
                                 <rect key="frame" x="20" y="497" width="335" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

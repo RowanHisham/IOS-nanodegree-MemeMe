@@ -58,19 +58,12 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         bottomTextField.textAlignment = NSTextAlignment.center
     }
     
-    // MARK: Display Image Picker Controller [Library]
-    @IBAction func pickImageLibrary(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        present(pickerController, animated: true, completion: nil)
-    }
     
-    // MARK: Display Image Picker Controller [Camera]
-    @IBAction func pickImageCamera(_ sender: Any) {
+    // MARK: Display Image Picker Controller 1=Camera 0=photoLibrary
+    @IBAction func pickImage(_ sender: UIButton) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .camera
+        pickerController.sourceType =  sender.tag == 1 ? .camera : .photoLibrary
         present(pickerController, animated: true, completion: nil)
     }
     

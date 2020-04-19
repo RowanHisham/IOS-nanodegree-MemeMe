@@ -14,7 +14,7 @@ class TextFieldProperties: NSObject, UITextFieldDelegate{
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth:  4
+        NSAttributedString.Key.strokeWidth:  -4
     ]
     
     var view: UIView!
@@ -26,7 +26,7 @@ class TextFieldProperties: NSObject, UITextFieldDelegate{
     
     // MARK: Reset Text When Field is Clicked
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        isBottom = textField.restorationIdentifier == "Bottom" ? true:false
+        isBottom = textField.tag == 1 ? true:false
         textField.text = ""
     }
     
