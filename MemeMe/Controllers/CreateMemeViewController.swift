@@ -8,8 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+struct Meme {
+    var topText: String
+    var bottomText: String
+    var originalImage: UIImage
+    var MemeImage: UIImage
+}
 
+class CreateMemeViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
@@ -20,22 +27,22 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     
     var memeImage: UIImage!
     
-    var textFieldProperties: TextFieldProperties!
+    let textAttributes: [NSAttributedString.Key: Any] = [
+    NSAttributedString.Key.strokeColor: UIColor.black,
+    NSAttributedString.Key.foregroundColor: UIColor.white,
+    NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+    NSAttributedString.Key.strokeWidth:  -4
+    ]
+    var isBottom: Bool! = false
     
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var MemeImage: UIImage
-    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        textFieldProperties = TextFieldProperties(view: view)
-        textFieldProperties.subscribeToKeyboardNotifications()
-        topTextField.delegate = textFieldProperties
-        bottomTextField.delegate = textFieldProperties
+        subscribeToKeyboardNotifications()
+        topTextField.delegate = self
+        bottomTextField.delegate = self
 
         configureUI()
     }
@@ -46,14 +53,14 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        textFieldProperties.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
 
     func configureUI(){
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
-        topTextField.defaultTextAttributes = textFieldProperties.textAttributes
-        bottomTextField.defaultTextAttributes = textFieldProperties.textAttributes
+        topTextField.defaultTextAttributes = textAttributes
+        bottomTextField.defaultTextAttributes = textAttributes
         topTextField.textAlignment = NSTextAlignment.center
         bottomTextField.textAlignment = NSTextAlignment.center
     }
@@ -81,7 +88,6 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
     
     // MARK: Generate Image From View
     func generateMemedImage() -> UIImage {
@@ -105,8 +111,12 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         memeImage = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
 
+        // If save is successful add to array and return to main view
         controller.completionWithItemsHandler = { (activity, success, items, error) in
-            if success{self.save()}
+            if success{
+                self.save()
+                self.performSegue(withIdentifier: "return", sender: self)
+            }
         }
         self.present(controller, animated: true, completion: nil)
     }
@@ -117,11 +127,14 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         topTextField.text = "Top"
         bottomTextField.text = "Bottom"
         shareButton.isEnabled = false
+        print("here")
+        performSegue(withIdentifier: "return", sender: self)
     }
     
-    // MARK: WILL BE USED LATER
+    // MARK: Create new entry in history and append it
     func save(){
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, MemeImage: memeImage)
+        
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
 }
-
