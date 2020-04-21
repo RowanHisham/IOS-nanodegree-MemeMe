@@ -17,7 +17,7 @@ extension CreateMemeViewController: UITextFieldDelegate{
     }
     
     // MARK: Hides KeyBoard after Returning from Editing Text Field
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
