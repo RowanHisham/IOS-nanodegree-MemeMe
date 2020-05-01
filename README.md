@@ -10,15 +10,21 @@ Saved Memes will appear in a tab view using two views: a table view and a collec
 ## Usage
 ### Create a Meme screen
 
+<p align="center">
 <img src="https://github.com/RowanHisham/IOS-nanodegree-MemeMe/blob/master/Images/mememe1.png" alt="alt text" width="300" height="550" >
+</p>
 
 ### TableView screen
 
+<p align="center">
 <img src="https://github.com/RowanHisham/IOS-nanodegree-MemeMe/blob/master/Images/mememe2.png" alt="alt text" width="300" height="550">
+</p>
 
 ### CollectionView screen
 
+<p align="center">
 <img src="https://github.com/RowanHisham/IOS-nanodegree-MemeMe/blob/master/Images/mememe3.png" alt="alt text" width="300" height="550">
+</p>
 
 ## Frameworks
 UIKit
